@@ -1,9 +1,11 @@
 {
   "name": "consolog-watcher",
   "version": "1.0.0",
-  "description": "A NodeJs development tool that intercepts your app’s “console.log()” statements, stores them for you, and lets you visualize them on your personal dashboard or a .log file in your app directory.",
-  "main": "index.js",
+  "description": "A NodeJs development tool that intercepts your app's “console.log()” statements, stores them for you, and lets you visualize them on your personal dashboard or a log file in your app directory.",
+  "main": "lib/index.js",
+  "types": "lib/index.ts",
   "scripts": {
+    "compile": "npx tsc",
     "test": "npm run test"
   },
   "repository": {
@@ -20,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/francosion042/consolog-watcher/issues"
   },
-  "homepage": "https://github.com/francosion042/consolog-watcher#readme"
+  "homepage": "https://github.com/francosion042/consolog-watcher#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.6",
+    "typescript": "^5.2.2"
+  }
 }
