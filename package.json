@@ -1,0 +1,24 @@
+{
+  "name": "consolog-watcher",
+  "version": "1.0.0",
+  "description": "A NodeJs development tool that intercepts your app’s “console.log()” statements, stores them for you, and lets you visualize them on your personal dashboard or a .log file in your app directory.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/francosion042/consolog-watcher.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "npm",
+    "logging"
+  ],
+  "author": "Anthony Nwobodo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/francosion042/consolog-watcher/issues"
+  },
+  "homepage": "https://github.com/francosion042/consolog-watcher#readme"
+}
