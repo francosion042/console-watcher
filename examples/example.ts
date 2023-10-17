@@ -1,6 +1,6 @@
 import ConsoleWatcher from '../src/index'
 
-new ConsoleWatcher({})
+new ConsoleWatcher({ logFilePath: 'app.json' })
 
 console.log('This is a test log!');
 console.info({hello: 'world'})

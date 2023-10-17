@@ -1,23 +1,26 @@
 import fs from 'fs'
 import { ConfigType } from './types'
+import { validateFileType } from './utils'
 
 class ConsoleWatcher {
   private nativeConsoleLog: (...args: any[]) => void
   private nativeConsoleInfo: (...args: any[]) => void
   private nativeConsoleError: (...args: any[]) => void
 
+  private printInConsole: boolean
   private saveToFile: boolean
   private logFilePath: string
 
 
-  constructor(config: ConfigType) {
+  constructor(config: ConfigType = {}) {
     // Stores the native console.log, console.info and console.error function in a variable.
     this.nativeConsoleLog = console.log
     this.nativeConsoleInfo = console.info
     this.nativeConsoleError = console.error
 
-    this.saveToFile = config.saveToFile || true
-    this.logFilePath = config.logFilePath || 'consoleWatcher.log'
+    this.printInConsole = config.printInConsole === undefined ? true : config.printInConsole
+    this.saveToFile = config.saveToFile === undefined ? true : config.saveToFile
+    this.logFilePath = config.logFilePath && validateFileType(config.logFilePath) || 'consoleWatcher.log'
 
     this.overrideConsoleLog()
     this.overrideConsoleInfo()
@@ -39,7 +42,9 @@ class ConsoleWatcher {
         this.saveLogToFile(args.join(' '))
       }
 
-      this.nativeConsoleLog(...args)
+      if (this.printInConsole) {
+        this.nativeConsoleLog(...args)
+      }
     }
   }
 
@@ -58,7 +63,9 @@ class ConsoleWatcher {
         this.saveLogToFile(args.join(' '))
       }
 
-      this.nativeConsoleInfo(...args)
+      if (this.printInConsole) {
+        this.nativeConsoleInfo(...args)
+      }
     }
   }
 
@@ -77,12 +84,14 @@ class ConsoleWatcher {
         this.saveLogToFile(args.join(' '))
       }
 
-      this.nativeConsoleError(...args)
+      if (this.printInConsole) {
+        this.nativeConsoleError(...args)
+      }
     }
   }
 
   private saveLogToFile(logData: string): void {
-    fs.appendFileSync(this.logFilePath, logData + '\n')
+    fs.appendFileSync(this.logFilePath, logData + '\n\n')
   }
 }
 
