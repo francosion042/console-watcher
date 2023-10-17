@@ -1,6 +1,6 @@
 {
   "name": "console-watcher",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A NodeJs development tool that intercepts your app's “console.log()” statements, stores them for you, and lets you visualize them on your personal dashboard or a log file in your app directory.",
   "main": "lib/index.js",
   "types": "lib/index.ts",
