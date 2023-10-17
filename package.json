@@ -1,15 +1,21 @@
 {
   "name": "console-watcher",
   "version": "1.0.0",
-  "description": "A NodeJs development tool that intercepts your app's “console.log()” statements, stores them for you, and lets you visualize them on your personal dashboard or a log file in your app directory.",
+  "description": "A NodeJs development tool that intercepts your app’s 'console.log()', 'console.info()' and 'console.error()' statements, stores them for you, and lets you visualise them on your personal dashboard or a .log, .txt or .json file in your app directory",
   "main": "lib/index.js",
   "types": "lib/index.ts",
   "scripts": {
+    "commit": "npm run build && git add . && cz",
     "build": "tsc",
     "prepublish": "tsc",
     "run-example": "ts-node examples/example.ts",
     "test": "npm run test",
     "format": "prettier --write ."
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-emoji"
+    }
   },
   "repository": {
     "type": "git",
@@ -29,6 +35,8 @@
   "devDependencies": {
     "@types/node": "^20.8.6",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "commitizen": "^4.3.0",
+    "cz-emoji": "^1.3.2-canary.2",
     "eslint": "^8.51.0",
     "eslint-config-standard-with-typescript": "^39.1.1",
     "eslint-plugin-import": "^2.28.1",
