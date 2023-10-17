@@ -1,6 +1,6 @@
 {
   "name": "console-watcher",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A NodeJs development tool that intercepts your app's “console.log()” statements, stores them for you, and lets you visualize them on your personal dashboard or a log file in your app directory.",
   "main": "lib/index.js",
   "types": "lib/index.ts",
@@ -9,7 +9,8 @@
     "prepublish": "tsc",
     "run-example": "ts-node examples/example.ts",
     "test": "npm run test",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "update-version": "npm version 0.0.1 --no-git-tag-version && git add -A package.json"
   },
   "repository": {
     "type": "git",
