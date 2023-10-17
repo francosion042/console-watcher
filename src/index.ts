@@ -1,34 +1,43 @@
 import fs from 'fs'
+import { ConfigType } from './types'
 
-// Stores the native console.log function in a variable.
-const nativeConsoleLog = console.log
+class ConsoleWatcher {
+  private nativeConsoleLog: (...args: any[]) => void
+  private saveToFile: boolean
+  private logFilePath: string
 
-// Overrides the console.log function.
-console.log = function () {
-  // Converts arguments object to an array
-  let args = Array.prototype.slice.call(arguments)
 
-  args = args.map((arg) => {
-    if (typeof arg === 'object') {
-      return JSON.stringify(arg)
-    } else {
-      return arg
+  constructor(config: ConfigType) {
+    // Stores the native console.log function in a variable.
+    this.nativeConsoleLog = console.log
+    this.saveToFile = config.saveToFile || false
+    this.logFilePath = config.logFilePath || 'consologWatcher.log'
+    this.overrideConsoleLog()
+  }
+
+  private overrideConsoleLog(): void {
+    console.log = (...args: any[]) => {
+      args = args.map((arg) => {
+        if (typeof arg === 'object') {
+          return JSON.stringify(arg)
+        } else {
+          return arg
+        }
+      })
+
+      // Saves to file if enabled in the config.
+      if (this.saveToFile) {
+        this.saveLogToFile(args.join(' '))
+      }
+
+      this.nativeConsoleLog(...args)
     }
-  })
+  }
 
-  // Saves log data to file
-  saveLogToFile(args.join(' '))
-
-  // Call the native console.log function.
-  nativeConsoleLog.apply(console, args)
+  private saveLogToFile(logData: string): void {
+    fs.appendFileSync(this.logFilePath, logData + '\n')
+  }
 }
 
-function saveLogToFile(logData: string) {
-  // Saves the log data to a file  using Node.js's fs module.
-  fs.appendFileSync('app.log', logData + '\n')
-}
+export default ConsoleWatcher
 
-// Test
-console.log('This is a test log!')
-console.log({ hello: 'world' })
-console.log([1, 2, 3, 4, 5])
