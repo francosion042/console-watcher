@@ -24,9 +24,6 @@ jobs:
 
       - name: Compile TypeScript
         run: npm run build
-
-      - name: Update Version
-        run: npm run update-version
         
       - run: npm publish --provenance --access public
         env:

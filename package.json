@@ -9,8 +9,7 @@
     "prepublish": "tsc",
     "run-example": "ts-node examples/example.ts",
     "test": "npm run test",
-    "format": "prettier --write .",
-    "update-version": "npm version 0.0.1 --no-git-tag-version && git add -A package.json"
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
