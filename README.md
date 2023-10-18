@@ -4,7 +4,7 @@
 
 ---
 
-`console-watcher` is a utility library designed to monitor and handle console outputs in a Node.js environment. By using `console-watcher`, developers can easily save console logs, errors, and info messages to a .log, .txt or .json file while retaining the ability to display them in the console.
+`console-watcher` is a utility library designed to monitor and handle console outputs in a Node.js environment. By using `console-watcher`, developers can easily save console logs, errors, and info messages to a .log, .txt or .json file while retaining the ability to display or hide them in the console for security reasons.
 
 ## Features
 
