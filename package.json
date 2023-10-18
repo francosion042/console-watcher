@@ -1,7 +1,7 @@
 {
   "name": "console-watcher",
   "version": "1.0.0",
-  "description": "A NodeJs development tool that intercepts your app’s 'console.log()', 'console.info()' and 'console.error()' statements, stores them for you, and lets you visualise them in a .log, .txt or .json file in your app directory or on your personal dashboard (coming soon)",
+  "description": "console-watcher is a utility library designed to monitor and handle console outputs in a Node.js environment. By using `console-watcher`, developers can easily save console logs, errors, and info messages to a .log, .txt or .json file while retaining the ability to display them in the console.",
   "main": "lib/index.js",
   "types": "lib/index.ts",
   "scripts": {
