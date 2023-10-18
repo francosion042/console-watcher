@@ -10,6 +10,7 @@ declare class ConsoleWatcher {
     private overrideConsoleLog;
     private overrideConsoleInfo;
     private overrideConsoleError;
+    private formatArgsAsObject;
     private saveLogToFile;
 }
 export default ConsoleWatcher;
