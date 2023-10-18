@@ -24,7 +24,6 @@ npm install console-watcher
 To use `console-watcher`, first import the class in your app's entry file and create a new instance.
 
 ```typescript
-
 import ConsoleWatcher from 'console-watcher'
 
 new ConsoleWatcher(config)
@@ -42,7 +41,7 @@ When initializing `console-watcher`, you can pass in a configuration object with
 const config = {
   printInConsole: true,
   saveToFile: true,
-  logFilePath: 'consoleWatcher.json'
+  logFilePath: 'consoleWatcher.json',
 }
 ```
 

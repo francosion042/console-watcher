@@ -9,7 +9,7 @@
     "build": "tsc",
     "prepublish": "tsc",
     "run-example": "ts-node examples/example.ts",
-    "test": "npm run test",
+    "test": "jest",
     "format": "prettier --write ."
   },
   "config": {
@@ -33,6 +33,9 @@
   },
   "homepage": "https://github.com/francosion042/console-watcher#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-typescript": "^7.23.2",
+    "@types/jest": "^29.5.6",
     "@types/node": "^20.8.6",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "commitizen": "^4.3.0",
@@ -43,6 +46,7 @@
     "eslint-plugin-n": "^16.2.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.7.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   }
