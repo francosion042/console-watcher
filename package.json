@@ -22,9 +22,8 @@
     "url": "git+https://github.com/francosion042/console-watcher.git"
   },
   "keywords": [
-    "NodeJs",
-    "npm",
-    "logging"
+    "logging",
+    "console"
   ],
   "author": "Anthony Nwobodo",
   "license": "MIT",
