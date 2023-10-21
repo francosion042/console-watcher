@@ -6,6 +6,6 @@ export interface ConfigType {
 
 export interface SyncToServerConfigType {
   apiKey: string
-  applicationId: string
+  applicationKey: string
   encryptionKey: string
 }

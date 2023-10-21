@@ -91,9 +91,14 @@ class ConsoleWatcher {
    * @param {string} config.applicationId
    * @param {string} config.encryptionKey - A Key private to you, do not lose or change this key to avoid losing already encrypted data.
    */
-  public syncToConsoleWatcherServer(config: SyncToServerConfigType) {
+  public async syncToConsoleWatcherServer(config: SyncToServerConfigType) {
     // Ensures saveToFile is set to true when calling this method
     this.saveToFile = true
+
+    // Validate the length of the encryptionKey
+    if (config.encryptionKey.length !== 16) {
+      throw new Error('Invalid encryptionKey length. Expected 16 characters.')
+    }
 
     // //////////////////////////
     const logFileType = getFileType(this.logFilePath)
@@ -106,14 +111,21 @@ class ConsoleWatcher {
     }
 
     if (logs.length) {
-      const encryptedData = encrypt(JSON.stringify(logs), config.encryptionKey)
-
       try {
-        SyncLogsToServer.post(
+        const encryptedData = encrypt(
+          JSON.stringify(logs),
+          config.encryptionKey
+        )
+
+        const response = await SyncLogsToServer.post(
           encryptedData,
           config.apiKey,
-          config.applicationId
+          config.applicationKey
         )
+
+        if (response) {
+          // Clear the logs in the file
+        }
       } catch (error) {
         // Do Nothing
       }

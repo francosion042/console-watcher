@@ -1,39 +1,32 @@
-import { request } from 'https'
+import axios from 'axios'
 
 class SyncLogsToServer {
-  private apiUrl: URL = new URL('https://api-endpoint.com/logs')
+  private apiUrl: string = 'http://127.0.0.1:3333/api/v1/logs'
 
-  public post(data: string, apiKey: string, appId: string): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const options = {
-        method: 'POST',
-        hostname: this.apiUrl.hostname,
-        path: this.apiUrl.pathname,
-        headers: {
-          'Api-Key': apiKey,
-          'Application-Id': appId,
-          'Content-Type': 'text/plain',
-          'Content-Length': data.length,
-        },
+  public async post(
+    data: string,
+    apiKey: string,
+    appKey: string
+  ): Promise<boolean> {
+    const headers = {
+      'api-Key': apiKey,
+      'application-Key': appKey,
+      'Content-Type': 'text/plain',
+      'Content-Length': data.length.toString(),
+    }
+    try {
+      const response = await axios.post(this.apiUrl, data, {
+        headers,
+      })
+
+      if (response.status === 201) {
+        return true
+      } else {
+        return false
       }
-
-      const req = request(options, (res) => {
-        let responseData = ''
-        res.on('data', (chunk) => {
-          responseData += chunk
-        })
-        res.on('end', () => {
-          resolve(responseData)
-        })
-      })
-
-      req.on('error', (error) => {
-        reject(error)
-      })
-
-      req.write(data)
-      req.end()
-    })
+    } catch (error) {
+      return false
+    }
   }
 }
 

@@ -9,9 +9,9 @@ const consoleWatcher = new ConsoleWatcher(consoleWatcherConfig) // You can pass 
 
 // You can Periodically sync the logs to the remote server.
 const syncToServerConfig = {
-  apiKey: '',
-  applicationId: '',
-  encryptionKey: '',
+  apiKey: 'API_KEY_85SXZ11697914013841',
+  applicationKey: 'APP_KEY_BOUXCY1697914182124',
+  encryptionKey: 'gggggggggggggggg',
 }
 consoleWatcher.syncToConsoleWatcherServer(syncToServerConfig)
 

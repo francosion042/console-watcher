@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 
-const algorithm = 'aes-256-cbc'
+const algorithm = 'aes-128-cbc'
 const ivLength = 16
 
 export const encrypt = (text: string, encryptionKey: string): string => {
