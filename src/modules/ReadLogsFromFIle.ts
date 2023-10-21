@@ -1,9 +1,15 @@
 import * as fs from 'fs'
 
 class ReadLogsFromFile {
-  private nonJson(logFilePath: string): object[] {
+  public nonJson(filePath: string): object[] {
     try {
-      const fileContent = fs.readFileSync(logFilePath, 'utf-8')
+      let fileContent
+      // Check if the file exists
+      if (!fs.existsSync(filePath)) {
+        return []
+      } else {
+        fileContent = fs.readFileSync(filePath, 'utf8')
+      }
 
       // Split the file content by newline to get individual JSON strings
       const jsonStrings = fileContent
@@ -17,9 +23,15 @@ class ReadLogsFromFile {
     }
   }
 
-  private json(filePath: string): object[] {
+  public json(filePath: string): object[] {
     try {
-      const fileContent = fs.readFileSync(filePath, 'utf-8')
+      let fileContent
+      // Check if the file exists
+      if (!fs.existsSync(filePath)) {
+        return []
+      } else {
+        fileContent = fs.readFileSync(filePath, 'utf8')
+      }
       const parsedData = JSON.parse(fileContent)
       if (Array.isArray(parsedData)) {
         return parsedData

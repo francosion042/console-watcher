@@ -1,23 +1,32 @@
-import { ConfigType } from './types'
-import { getFileType, validateFileType } from './utils'
+import { ConfigType, SyncToServerConfigType } from './types'
+import { encrypt, getFileType, validateFileType } from './utils'
 import SaveLogToFile from './modules/SaveLogToFile'
+import ReadLogsFromFile from './modules/ReadLogsFromFile'
+import SyncLogsToServer from './modules/SyncLogsToServer'
 
 class ConsoleWatcher {
   // Native console methods references
-  private nativeConsoleLog: (...args: any[]) => void
-  private nativeConsoleInfo: (...args: any[]) => void
-  private nativeConsoleError: (...args: any[]) => void
+  private nativeConsoleMethods: { [key: string]: (...args: any[]) => void } = {}
 
   // Configuration settings
   private printInConsole: boolean
   private saveToFile: boolean
   private logFilePath: string
 
+  /**
+   *
+   * @param {object} config
+   * @param {boolean} config.printInConsole - Optional - defaults to true
+   * @param {boolean} config.saveToFile - Optional - defaults to true
+   * @param {string} config.logFilePath - Optional - accepts ['.log', '.txt', '.json'] files - defaults to 'consoleWatcher.log'
+   */
   constructor(config: ConfigType = {}) {
     // Store the original console functions to restore their functionality later
-    this.nativeConsoleLog = console.log
-    this.nativeConsoleInfo = console.info
-    this.nativeConsoleError = console.error
+    this.nativeConsoleMethods = {
+      log: console.log,
+      info: console.info,
+      error: console.error,
+    }
 
     // Set configuration options, default to true if not provided
     this.printInConsole =
@@ -30,53 +39,23 @@ class ConsoleWatcher {
       'consoleWatcher.log'
 
     // Override the native console functions to provide custom behavior
-    this.overrideConsoleLog()
-    this.overrideConsoleInfo()
-    this.overrideConsoleError()
+    this.overrideConsoleMethods()
   }
 
-  // Override the console.log method
-  private overrideConsoleLog(): void {
-    console.log = (...args: any[]) => {
-      // Format the arguments for logging
-      const logData = this.formatArgsAsObject(args, 'log')
+  private overrideConsoleMethods(): void {
+    ;(['log', 'info', 'error'] as const).forEach((method) => {
+      console[method] = (...args: any[]) => {
+        const logData = this.formatArgsAsObject(args, method)
 
-      // If saving to file is enabled, save the log
-      if (this.saveToFile) {
-        this.saveLogToFile(logData)
-      }
+        if (this.saveToFile) {
+          this.saveLogToFile(logData)
+        }
 
-      // If printing to console is enabled, display the log
-      if (this.printInConsole) {
-        this.nativeConsoleLog(...args)
+        if (this.printInConsole) {
+          this.nativeConsoleMethods[method](...args)
+        }
       }
-    }
-  }
-
-  // Override the console.info method
-  private overrideConsoleInfo(): void {
-    console.info = (...args: any[]) => {
-      const logData = this.formatArgsAsObject(args, 'info')
-      if (this.saveToFile) {
-        this.saveLogToFile(logData)
-      }
-      if (this.printInConsole) {
-        this.nativeConsoleInfo(...args)
-      }
-    }
-  }
-
-  // Override the console.error method
-  private overrideConsoleError(): void {
-    console.error = (...args: any[]) => {
-      const logData = this.formatArgsAsObject(args, 'error')
-      if (this.saveToFile) {
-        this.saveLogToFile(logData)
-      }
-      if (this.printInConsole) {
-        this.nativeConsoleError(...args)
-      }
-    }
+    })
   }
 
   // Format console arguments into a structured log entry
@@ -98,5 +77,35 @@ class ConsoleWatcher {
       SaveLogToFile.appendToNonJSONFile(this.logFilePath, logData)
     }
   }
+
+  /**
+   * @description Users who wish to have their logs where it'd be easier for them to see can create an account on the console watcher web platform
+   * the logs are encrypted and stored on the database and can only be decrypted by the user on the frontend.
+   * @param {object} config
+   * @param {string} config.apiKey
+   * @param {string} config.applicationId
+   * @param {string} config.encryptionKey
+   */
+  public syncToConsoleWatcherServer(config: SyncToServerConfigType) {
+    // Ensures saveToFile is set to true when calling this method
+    this.saveToFile = true
+
+    // //////////////////////////
+    const logFileType = getFileType(this.logFilePath)
+    let logs = []
+
+    if (logFileType === 'json') {
+      logs = ReadLogsFromFile.json(this.logFilePath)
+    } else {
+      logs = ReadLogsFromFile.nonJson(this.logFilePath)
+    }
+
+    if (logs.length !== 0) {
+      const encryptedData = encrypt(JSON.stringify(logs), config.encryptionKey)
+
+      SyncLogsToServer.post(encryptedData, config.apiKey, config.applicationId)
+    }
+  }
 }
+
 export default ConsoleWatcher

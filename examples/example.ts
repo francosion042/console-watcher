@@ -5,7 +5,11 @@ const config = {
   saveToFile: true, // Optional - defaults to true
   logFilePath: 'consoleWatcher.json', // Optional - accepts ['.log', '.txt', '.json'] files - defaults to 'consoleWatcher.log'
 }
-new ConsoleWatcher(config) // You can pass the optional config
+new ConsoleWatcher(config).syncToConsoleWatcherServer({
+  apiKey: '',
+  applicationId: '',
+  encryptionKey: '',
+}) // You can pass the optional config
 
 console.log('This is a test log!', 'Another test log')
 console.info({ hello: 'world' })
