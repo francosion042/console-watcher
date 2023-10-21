@@ -90,7 +90,6 @@ class ConsoleWatcher {
    * @param {string} config.apiKey
    * @param {string} config.applicationId
    * @param {string} config.encryptionKey - A Key private to you, do not lose or change this key to avoid losing already encrypted data.
-   * @param {number} config.syncInterval - (minutes) - The interval for the logs to be posted to the remote server
    */
   public syncToConsoleWatcherServer(config: SyncToServerConfigType) {
     // Ensures saveToFile is set to true when calling this method

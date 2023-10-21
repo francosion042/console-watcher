@@ -1,7 +1,7 @@
 import { request } from 'https'
 
 class SyncLogsToServer {
-  private apiUrl: URL = new URL('https://your-api-endpoint.com/logs') // Replace with your API endpoint
+  private apiUrl: URL = new URL('https://api-endpoint.com/logs')
 
   public post(data: string, apiKey: string, appId: string): Promise<any> {
     return new Promise((resolve, reject) => {
