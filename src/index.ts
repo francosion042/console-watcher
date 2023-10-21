@@ -99,28 +99,26 @@ class ConsoleWatcher {
     // //////////////////////////
     const logFileType = getFileType(this.logFilePath)
 
-    // Sync every {user-specified} minutes
-    setInterval(() => {
-      let logs = []
-      if (logFileType === 'json') {
-        logs = ReadLogsFromFile.json(this.logFilePath)
-      } else {
-        logs = ReadLogsFromFile.nonJson(this.logFilePath)
-      }
+    let logs = []
+    if (logFileType === 'json') {
+      logs = ReadLogsFromFile.json(this.logFilePath)
+    } else {
+      logs = ReadLogsFromFile.nonJson(this.logFilePath)
+    }
 
-      if (logs.length) {
-        const encryptedData = encrypt(
-          JSON.stringify(logs),
-          config.encryptionKey
-        )
+    if (logs.length) {
+      const encryptedData = encrypt(JSON.stringify(logs), config.encryptionKey)
 
+      try {
         SyncLogsToServer.post(
           encryptedData,
           config.apiKey,
           config.applicationId
         )
+      } catch (error) {
+        // Do Nothing
       }
-    }, minutesToMilliseconds(10))
+    }
   }
 }
 

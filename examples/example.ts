@@ -1,16 +1,19 @@
 import ConsoleWatcher from '../src/index'
 
-const config = {
+const consoleWatcherConfig = {
   printInConsole: true, // Optional - defaults to true
   saveToFile: true, // Optional - defaults to true
   logFilePath: 'consoleWatcher.json', // Optional - accepts ['.log', '.txt', '.json'] files - defaults to 'consoleWatcher.log'
 }
-new ConsoleWatcher(config).syncToConsoleWatcherServer({
+const consoleWatcher = new ConsoleWatcher(consoleWatcherConfig) // You can pass the optional config
+
+// You can Periodically sync the logs to the remote server.
+const syncToServerConfig = {
   apiKey: '',
   applicationId: '',
   encryptionKey: '',
-  syncInterval: 5
-}) // You can pass the optional config
+}
+consoleWatcher.syncToConsoleWatcherServer(syncToServerConfig)
 
 console.log('This is a test log!', 'Another test log')
 console.info({ hello: 'world' })
