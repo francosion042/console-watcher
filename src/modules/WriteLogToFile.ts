@@ -34,6 +34,17 @@ class WriteLogToFile {
     // Write the updated content back to the file
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2))
   }
+
+  public clearFileContent(filePath: string): void {
+    try {
+      // Check if the file exists before trying to clear its content
+      if (fs.existsSync(filePath)) {
+        fs.writeFileSync(filePath, '', 'utf8');
+      }
+    } catch (error) {
+      // 
+    }
+  }
 }
 
 export default new WriteLogToFile()

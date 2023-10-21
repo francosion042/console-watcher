@@ -1,21 +1,19 @@
 import axios from 'axios'
 
 class SyncLogsToServer {
-  private apiUrl: string = 'http://127.0.0.1:3333/api/v1/logs'
-
   public async post(
     data: string,
     apiKey: string,
     appKey: string
   ): Promise<boolean> {
+    const apiUrl: string = `http://127.0.0.1:3333/api/v1/applications/${appKey}/logs`
     const headers = {
       'api-Key': apiKey,
-      'application-Key': appKey,
       'Content-Type': 'text/plain',
       'Content-Length': data.length.toString(),
     }
     try {
-      const response = await axios.post(this.apiUrl, data, {
+      const response = await axios.post(apiUrl, data, {
         headers,
       })
 

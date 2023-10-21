@@ -124,7 +124,8 @@ class ConsoleWatcher {
         )
 
         if (response) {
-          // Clear the logs in the file
+          // Clear the logs in the file.
+          WriteLogToFile.clearFileContent(this.logFilePath)
         }
       } catch (error) {
         // Do Nothing
