@@ -1,6 +1,5 @@
 declare class SyncLogsToServer {
-    private apiUrl;
-    post(data: string, apiKey: string, appId: string): Promise<any>;
+    post(data: string, apiKey: string, appKey: string): Promise<boolean>;
 }
 declare const _default: SyncLogsToServer;
 export default _default;

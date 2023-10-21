@@ -23,6 +23,6 @@ declare class ConsoleWatcher {
      * @param {string} config.applicationId
      * @param {string} config.encryptionKey - A Key private to you, do not lose or change this key to avoid losing already encrypted data.
      */
-    syncToConsoleWatcherServer(config: SyncToServerConfigType): void;
+    syncToConsoleWatcherServer(config: SyncToServerConfigType): Promise<void>;
 }
 export default ConsoleWatcher;
