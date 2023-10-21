@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 
 // Class responsible for appending data to JSON, text and log files.
-class SaveLogToFile {
+class WriteLogToFile {
   public appendToNonJSONFile(filePath: string, obj: object) {
     const logData = JSON.stringify(obj)
     fs.appendFileSync(filePath, logData + '\n')
@@ -36,4 +36,4 @@ class SaveLogToFile {
   }
 }
 
-export default new SaveLogToFile()
+export default new WriteLogToFile()

@@ -8,4 +8,5 @@ export interface SyncToServerConfigType {
   apiKey: string
   applicationId: string
   encryptionKey: string
+  syncInterval: number
 }

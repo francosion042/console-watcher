@@ -9,6 +9,7 @@ new ConsoleWatcher(config).syncToConsoleWatcherServer({
   apiKey: '',
   applicationId: '',
   encryptionKey: '',
+  syncInterval: 5
 }) // You can pass the optional config
 
 console.log('This is a test log!', 'Another test log')

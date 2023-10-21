@@ -1,6 +1,11 @@
 import { ConfigType, SyncToServerConfigType } from './types'
-import { encrypt, getFileType, validateFileType } from './utils'
-import SaveLogToFile from './modules/SaveLogToFile'
+import {
+  encrypt,
+  getFileType,
+  minutesToMilliseconds,
+  validateFileType,
+} from './utils'
+import WriteLogToFile from './modules/WriteLogToFile'
 import ReadLogsFromFile from './modules/ReadLogsFromFile'
 import SyncLogsToServer from './modules/SyncLogsToServer'
 
@@ -72,9 +77,9 @@ class ConsoleWatcher {
   private saveLogToFile(logData: object): void {
     const logFileType = getFileType(this.logFilePath)
     if (logFileType === 'json') {
-      SaveLogToFile.appendToJSONFile(this.logFilePath, logData)
+      WriteLogToFile.appendToJSONFile(this.logFilePath, logData)
     } else {
-      SaveLogToFile.appendToNonJSONFile(this.logFilePath, logData)
+      WriteLogToFile.appendToNonJSONFile(this.logFilePath, logData)
     }
   }
 
@@ -84,7 +89,8 @@ class ConsoleWatcher {
    * @param {object} config
    * @param {string} config.apiKey
    * @param {string} config.applicationId
-   * @param {string} config.encryptionKey
+   * @param {string} config.encryptionKey - A Key private to you, do not lose or change this key to avoid losing already encrypted data.
+   * @param {number} config.syncInterval - (minutes) - The interval for the logs to be posted to the remote server
    */
   public syncToConsoleWatcherServer(config: SyncToServerConfigType) {
     // Ensures saveToFile is set to true when calling this method
@@ -92,19 +98,29 @@ class ConsoleWatcher {
 
     // //////////////////////////
     const logFileType = getFileType(this.logFilePath)
-    let logs = []
 
-    if (logFileType === 'json') {
-      logs = ReadLogsFromFile.json(this.logFilePath)
-    } else {
-      logs = ReadLogsFromFile.nonJson(this.logFilePath)
-    }
+    // Sync every {user-specified} minutes
+    setInterval(() => {
+      let logs = []
+      if (logFileType === 'json') {
+        logs = ReadLogsFromFile.json(this.logFilePath)
+      } else {
+        logs = ReadLogsFromFile.nonJson(this.logFilePath)
+      }
 
-    if (logs.length !== 0) {
-      const encryptedData = encrypt(JSON.stringify(logs), config.encryptionKey)
+      if (logs.length) {
+        const encryptedData = encrypt(
+          JSON.stringify(logs),
+          config.encryptionKey
+        )
 
-      SyncLogsToServer.post(encryptedData, config.apiKey, config.applicationId)
-    }
+        SyncLogsToServer.post(
+          encryptedData,
+          config.apiKey,
+          config.applicationId
+        )
+      }
+    }, minutesToMilliseconds(10))
   }
 }
 
