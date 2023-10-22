@@ -88,7 +88,7 @@ class ConsoleWatcher {
    * the logs are encrypted and stored on the database and can only be decrypted by the user on the frontend.
    * @param {object} config
    * @param {string} config.apiKey
-   * @param {string} config.applicationId
+   * @param {string} config.applicationKey
    * @param {string} config.encryptionKey - A Key private to you, do not lose or change this key to avoid losing already encrypted data.
    */
   public async syncToConsoleWatcherServer(config: SyncToServerConfigType) {

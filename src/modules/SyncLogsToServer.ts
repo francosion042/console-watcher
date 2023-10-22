@@ -8,7 +8,7 @@ class SyncLogsToServer {
   ): Promise<boolean> {
     const apiUrl: string = `http://127.0.0.1:3333/api/v1/applications/${appKey}/logs`
     const headers = {
-      'api-Key': apiKey,
+      'api-key': apiKey,
       'Content-Type': 'text/plain',
       'Content-Length': data.length.toString(),
     }
