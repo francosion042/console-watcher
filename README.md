@@ -4,14 +4,14 @@
 
 ---
 
-`console-watcher` is a utility library designed to monitor and handle console outputs in a Node.js environment. By using `console-watcher`, developers can easily save console logs, errors, and info messages to a .log, .txt or .json file while retaining the ability to display or hide them in the console for security reasons.
+`console-watcher` is a utility library that provides extended logging capabilities for Node.js applications. It overrides the native console methods, allowing developers to customize how logs are handled. Logs can be saved to a file, or even synced to a dedicated server while retaining the ability to display or hide them in the console for security reasons.
 
 ## Features
 
 - Override native console logging methods (`console.log`, `console.info`, `console.error`).
-- Provides options to save logs to a file or display them in the console.
-- Configurable log file path.
-- Supports both JSON and non-JSON file types for logging.
+- Configurable behavior to print in console or save to a file.
+- Supports both JSON and non-JSON file types for logs saving.
+- Encrypt and sync logs to a dedicated server for better visualization and management.
 
 ## Installation
 
@@ -26,7 +26,7 @@ To use `console-watcher`, first import the class in your app's entry file and cr
 ```typescript
 import ConsoleWatcher from 'console-watcher'
 
-new ConsoleWatcher(config)
+const watcher = new ConsoleWatcher(config)
 ```
 
 ## Configuration
@@ -44,6 +44,26 @@ const config = {
   logFilePath: 'consoleWatcher.json',
 }
 ```
+
+## Syncing to ConsoleWatcher Server
+
+ConsoleWatcher offers the ability to sync your logs to a dedicated server. This can be especially useful for easier log visualization and management.
+
+```typescript
+watcher.syncToConsoleWatcherServer({
+  apiKey: 'YOUR_API_KEY',
+  applicationKey: 'YOUR_APPLICATION_KEY',
+  encryptionKey: 'YOUR_ENCRYPTION_KEY'
+});
+```
+
+Sync Configuration:
+
+- `apiKey`: Your dedicated API key for the ConsoleWatcher platform.
+- `applicationKey`: Your application’s unique key on the ConsoleWatcher platform.
+- `encryptionKey`: A private key unique to you. Ensure you keep this key safe and don’t lose it to prevent data loss. This key must be exactly 16 characters in length.
+
+Note: The encryption key is used to encrypt logs before they’re sent to the server. This ensures data privacy and security. It’s vital not to lose or change this key to avoid losing already encrypted data.
 
 ## Contributing
 
