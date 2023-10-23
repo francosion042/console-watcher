@@ -6,7 +6,7 @@ class SyncLogsToServer {
     apiKey: string,
     appKey: string
   ): Promise<boolean> {
-    const apiUrl: string = `http://127.0.0.1:3333/api/v1/applications/${appKey}/logs`
+    const apiUrl: string = `https://console-watcher-backend.onrender.com/api/v1/applications/${appKey}/logs`
     const headers = {
       'api-key': apiKey,
       'Content-Type': 'text/plain',
