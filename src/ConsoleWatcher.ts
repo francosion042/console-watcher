@@ -2,14 +2,14 @@ import { ConfigType, SyncToServerConfigType } from './types'
 import {
   encrypt,
   getFileType,
-  minutesToMilliseconds,
   validateFileType,
 } from './utils'
 import WriteLogToFile from './modules/WriteLogToFile'
 import ReadLogsFromFile from './modules/ReadLogsFromFile'
 import SyncLogsToServer from './modules/SyncLogsToServer'
+import GlobalErrorHandler from './errors/GlobalErrorHandler'
 
-class ConsoleWatcher {
+class ConsoleWatcher extends GlobalErrorHandler {
   // Native console methods references
   private nativeConsoleMethods: { [key: string]: (...args: any[]) => void } = {}
 
@@ -26,6 +26,7 @@ class ConsoleWatcher {
    * @param {string} config.logFilePath - Optional - accepts ['.log', '.txt', '.json'] files - defaults to 'consoleWatcher.log'
    */
   constructor(config: ConfigType = {}) {
+    super()
     // Store the original console functions to restore their functionality later
     this.nativeConsoleMethods = {
       log: console.log,
@@ -97,7 +98,7 @@ class ConsoleWatcher {
 
     // Validate the length of the encryptionKey
     if (config.encryptionKey.length !== 16) {
-      throw new Error('Invalid encryptionKey length. Expected 16 characters.')
+      this.handleError(new Error('Invalid encryptionKey length. Expected 16 characters.'))
     }
 
     // //////////////////////////
@@ -128,7 +129,7 @@ class ConsoleWatcher {
           WriteLogToFile.clearFileContent(this.logFilePath)
         }
       } catch (error) {
-        // Do Nothing
+        this.handleError(error)
       }
     }
   }

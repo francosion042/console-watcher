@@ -2,8 +2,8 @@
   "name": "console-watcher",
   "version": "0.0.2",
   "description": "console-watcher is a utility library designed to monitor and handle console outputs in a Node.js environment. By using `console-watcher`, developers can easily save console logs, errors, and info messages to a .log, .txt or .json file while retaining the ability to display them in the console.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/ConsoleWatcher.js",
+  "types": "lib/ConsoleWatcher.d.ts",
   "scripts": {
     "commit": "npm run build && git add . && cz",
     "build": "tsc",

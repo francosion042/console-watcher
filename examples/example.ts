@@ -1,4 +1,4 @@
-import ConsoleWatcher from '../src/index'
+import ConsoleWatcher from '../src/ConsoleWatcher'
 
 const consoleWatcherConfig = {
   printInConsole: true, // Optional - defaults to true
@@ -13,7 +13,7 @@ const syncToServerConfig = {
   applicationKey: 'APP_KEY_BOUXCY1697914182124',
   encryptionKey: 'gggggggggggggggg',
 }
-consoleWatcher.syncToConsoleWatcherServer(syncToServerConfig)
+// consoleWatcher.syncToConsoleWatcherServer(syncToServerConfig)
 
 console.log('This is a test log!', 'Another test log')
 console.info({ hello: 'world' })

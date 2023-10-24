@@ -1,6 +1,10 @@
 import axios from 'axios'
+import GlobalErrorHandler from '../errors/GlobalErrorHandler'
 
-class SyncLogsToServer {
+class SyncLogsToServer extends GlobalErrorHandler {
+  constructor() {
+    super()
+  }
   public async post(
     data: string,
     apiKey: string,
@@ -20,9 +24,11 @@ class SyncLogsToServer {
       if (response.status === 201) {
         return true
       } else {
+        this.handleError(response)
         return false
       }
     } catch (error) {
+      this.handleError(error)
       return false
     }
   }

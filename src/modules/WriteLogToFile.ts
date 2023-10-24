@@ -1,7 +1,11 @@
 import * as fs from 'fs'
+import GlobalErrorHandler from '../errors/GlobalErrorHandler'
 
 // Class responsible for appending data to JSON, text and log files.
-class WriteLogToFile {
+class WriteLogToFile extends GlobalErrorHandler {
+  constructor() {
+    super()
+  }
   public appendToNonJSONFile(filePath: string, obj: object) {
     const logData = JSON.stringify(obj)
     fs.appendFileSync(filePath, logData + '\n')
@@ -20,7 +24,8 @@ class WriteLogToFile {
       // If the file is empty or invalid JSON, initialize an empty array
       try {
         JSON.parse(fileContent)
-      } catch (e) {
+      } catch (error) {
+        this.handleError(error)
         fileContent = '[]'
       }
     }
@@ -42,7 +47,7 @@ class WriteLogToFile {
         fs.writeFileSync(filePath, '', 'utf8');
       }
     } catch (error) {
-      // 
+      this.handleError(error)
     }
   }
 }

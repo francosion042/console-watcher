@@ -1,6 +1,10 @@
 import * as fs from 'fs'
+import GlobalErrorHandler from '../errors/GlobalErrorHandler'
 
-class ReadLogsFromFile {
+class ReadLogsFromFile extends GlobalErrorHandler {
+  constructor() {
+    super()
+  }
   public nonJson(filePath: string): object[] {
     try {
       let fileContent
@@ -19,6 +23,7 @@ class ReadLogsFromFile {
 
       return jsonObjects
     } catch (error) {
+      this.handleError(error)
       return []
     }
   }
@@ -41,6 +46,7 @@ class ReadLogsFromFile {
         return []
       }
     } catch (error) {
+      this.handleError(error)
       return []
     }
   }
