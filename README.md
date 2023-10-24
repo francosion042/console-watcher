@@ -52,7 +52,7 @@ Console Watcher supports a global error handler. You can register your custom er
 
 ```typescript
 watcher.registerGlobalErrorHandler((error) => {
-  console.error('An error occurred in Console Watcher:', error.message);
+  console.error('An error occurred in Console Watcher:', error.message ?? error?.response?.statusText ?? 'Unknown');
 });
 ```
 

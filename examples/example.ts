@@ -9,7 +9,8 @@ const consoleWatcher = new ConsoleWatcher(consoleWatcherConfig) // You can pass 
 
 // Handle Errors
 consoleWatcher.registerGlobalErrorHandler((error) => {
-  console.warn(error)
+  console.warn(error?.response?.statusText ?? error.message ?? 'Unknown')
+  // console.warn(error)
 })
 
 
@@ -17,7 +18,7 @@ consoleWatcher.registerGlobalErrorHandler((error) => {
 const syncToServerConfig = {
   apiKey: 'API_KEY_85SXZ11697914013841',
   applicationKey: 'APP_KEY_BOUXCY1697914182124',
-  encryptionKey: 'ggggggggggggggg',
+  encryptionKey: 'gggggggggggggggg',
 }
 consoleWatcher.syncToConsoleWatcherServer(syncToServerConfig)
 

@@ -138,7 +138,7 @@ class ConsoleWatcher extends GlobalErrorHandler {
    * @description Registers a global error handler for the library. This handler will be called with any errors that occur, allowing users to customize error handling.
    * @param handler A callback function that will be invoked with the error object when an error occurs.
    */
-  public registerGlobalErrorHandler(handler: (error: Error) => void): void {
+  public registerGlobalErrorHandler(handler: (error: any) => void): void {
     GlobalErrorHandler.registerGlobalErrorHandler(handler);
   }
 }

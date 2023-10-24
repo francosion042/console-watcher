@@ -1,4 +1,6 @@
-declare class ReadLogsFromFile {
+import GlobalErrorHandler from '../errors/GlobalErrorHandler';
+declare class ReadLogsFromFile extends GlobalErrorHandler {
+    constructor();
     nonJson(filePath: string): object[];
     json(filePath: string): object[];
 }

@@ -1,4 +1,6 @@
-declare class WriteLogToFile {
+import GlobalErrorHandler from '../errors/GlobalErrorHandler';
+declare class WriteLogToFile extends GlobalErrorHandler {
+    constructor();
     appendToNonJSONFile(filePath: string, obj: object): void;
     appendToJSONFile(filePath: string, obj: object): void;
     clearFileContent(filePath: string): void;

@@ -1,5 +1,6 @@
 import { ConfigType, SyncToServerConfigType } from './types';
-declare class ConsoleWatcher {
+import GlobalErrorHandler from './errors/GlobalErrorHandler';
+declare class ConsoleWatcher extends GlobalErrorHandler {
     private nativeConsoleMethods;
     private printInConsole;
     private saveToFile;
@@ -24,5 +25,10 @@ declare class ConsoleWatcher {
      * @param {string} config.encryptionKey - A Key private to you, do not lose or change this key to avoid losing already encrypted data.
      */
     syncToConsoleWatcherServer(config: SyncToServerConfigType): Promise<void>;
+    /**
+     * @description Registers a global error handler for the library. This handler will be called with any errors that occur, allowing users to customize error handling.
+     * @param handler A callback function that will be invoked with the error object when an error occurs.
+     */
+    registerGlobalErrorHandler(handler: (error: any) => void): void;
 }
 export default ConsoleWatcher;

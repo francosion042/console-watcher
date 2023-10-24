@@ -10,7 +10,7 @@ class GlobalErrorHandler {
       GlobalErrorHandler.globalErrorHandler(error);
     } else {
       // Optional: default behavior if no handler is registered
-      console.error('Unhandled error:', error);
+      console.error(`Unhandled error: ${error?.response?.statusText ?? error.message ?? 'Unknown'}`, error);
     }
   }
 }
