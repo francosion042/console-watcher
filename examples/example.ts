@@ -7,13 +7,19 @@ const consoleWatcherConfig = {
 }
 const consoleWatcher = new ConsoleWatcher(consoleWatcherConfig) // You can pass the optional config
 
+// Handle Errors
+consoleWatcher.registerGlobalErrorHandler((error) => {
+  console.warn(error)
+})
+
+
 // You can Periodically sync the logs to the remote server.
 const syncToServerConfig = {
   apiKey: 'API_KEY_85SXZ11697914013841',
   applicationKey: 'APP_KEY_BOUXCY1697914182124',
-  encryptionKey: 'gggggggggggggggg',
+  encryptionKey: 'ggggggggggggggg',
 }
-// consoleWatcher.syncToConsoleWatcherServer(syncToServerConfig)
+consoleWatcher.syncToConsoleWatcherServer(syncToServerConfig)
 
 console.log('This is a test log!', 'Another test log')
 console.info({ hello: 'world' })

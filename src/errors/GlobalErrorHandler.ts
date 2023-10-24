@@ -1,7 +1,7 @@
 class GlobalErrorHandler {
   private static globalErrorHandler: (error: Error) => void;
 
-  static registerGlobalErrorHandler(handler: (error: Error) => void) {
+  public static registerGlobalErrorHandler(handler: (error: Error) => void) {
     this.globalErrorHandler = handler;
   }
 

@@ -12,6 +12,7 @@
 - Configurable behavior to print in console or save to a file.
 - Supports both JSON and non-JSON file types for logs saving.
 - Encrypt and sync logs to a dedicated server for better visualization and management.
+- Register your custom error handling function which will be called whenever an error occurs within the library.
 
 ## Installation
 
@@ -44,6 +45,18 @@ const config = {
   logFilePath: 'consoleWatcher.json',
 }
 ```
+
+## Global Error Handling
+
+Console Watcher supports a global error handler. You can register your custom error handling function which will be called whenever an error occurs within the library.
+
+```typescript
+watcher.registerGlobalErrorHandler((error) => {
+  console.error('An error occurred in Console Watcher:', error.message);
+});
+```
+
+By registering a global error handler, you have the flexibility to handle errors in a way that best suits your application, whether it’s logging, alerting the user, or other custom behaviors.
 
 ## Syncing to ConsoleWatcher Server
 

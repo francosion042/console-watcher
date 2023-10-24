@@ -98,7 +98,7 @@ class ConsoleWatcher extends GlobalErrorHandler {
 
     // Validate the length of the encryptionKey
     if (config.encryptionKey.length !== 16) {
-      this.handleError(new Error('Invalid encryptionKey length. Expected 16 characters.'))
+      return this.handleError(new Error('Invalid encryptionKey length. Expected 16 characters.'))
     }
 
     // //////////////////////////
@@ -132,6 +132,14 @@ class ConsoleWatcher extends GlobalErrorHandler {
         this.handleError(error)
       }
     }
+  }
+
+  /**
+   * @description Registers a global error handler for the library. This handler will be called with any errors that occur, allowing users to customize error handling.
+   * @param handler A callback function that will be invoked with the error object when an error occurs.
+   */
+  public registerGlobalErrorHandler(handler: (error: Error) => void): void {
+    GlobalErrorHandler.registerGlobalErrorHandler(handler);
   }
 }
 
