@@ -1,7 +1,11 @@
 # console-watcher
 
-[![Publish Package to npmjs](https://github.com/francosion042/console-watcher/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/francosion042/console-watcher/actions/workflows/npm-publish.yml)   [![npm version](https://img.shields.io/npm/v/console-watcher.svg?style=flat-square)](https://www.npmjs.org/package/console-watcher)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   [![Downloads](https://img.shields.io/npm/dm/console-watcher.svg)](https://www.npmjs.com/package/console-watcher)
+<!-- markdownlint-disable MD033 -->
+<div align="center">
 
+[![Publish Package to npmjs](https://github.com/francosion042/console-watcher/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/francosion042/console-watcher/actions/workflows/npm-publish.yml)   [![npm version](https://img.shields.io/npm/v/console-watcher.svg?style=flat-square)](https://www.npmjs.org/package/console-watcher)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)    [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)    [![Downloads](https://img.shields.io/npm/dm/console-watcher.svg)](https://www.npmjs.com/package/console-watcher)
+
+</div>
 ---
 
 `console-watcher` is a utility library that provides extended logging capabilities for Node.js applications. It overrides the native console methods, allowing developers to customize how logs are handled. Logs can be saved to a file, or even synced to a dedicated server while retaining the ability to display or hide them in the console for security reasons.
