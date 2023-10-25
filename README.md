@@ -1,5 +1,6 @@
 # console-watcher
 
+<!-- markdownlint-disable MD029 -->
 <!-- markdownlint-disable MD033 -->
 <div align="center">
 
@@ -100,7 +101,67 @@ Note: The encryption key is used to encrypt logs before they’re sent to the se
 
 ## Contributing
 
--_Coming soon_
+First and foremost, thank you for your interest in contributing to ConsoleWatcher! Open source projects like this thrive because of contributors like you. Here's how you can help:
+
+### Getting Started
+
+1. **Fork the Repository**: Start by forking the ConsoleWatcher repository to your own GitHub account.
+
+2. **Clone the Repository**: Once you have forked the repo, clone it to your local machine:
+
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/ConsoleWatcher.git
+   ```
+
+3. **Install Dependencies**: After cloning, navigate to the project directory and install the necessary dependencies:
+
+   ```bash
+   cd ConsoleWatcher
+   npm install
+   ```
+
+### Making Changes
+
+4. **Create a New Branch**: Always create a new branch for your changes:
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+5. **Make Your Changes**: Implement your feature or bug fix.
+
+6. **Run Tests**: Ensure that your changes do not break any existing functionality. Add new tests if necessary.
+
+7. **Commit Your Changes**: Once you're satisfied with your changes, stage and commit them:
+
+   ```bash
+   git add .
+   git commit -m "Add some feature or fix some bug"
+   ```
+
+8. **Push to Your Fork**: Push your changes to your forked repository:
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+### Submitting a Pull Request
+
+9. **Open a Pull Request**: Navigate to the ConsoleWatcher repository and click on "Pull Requests". Click the "New Pull Request" button and select your fork and branch.
+
+10. **Describe Your Changes**: In the pull request description, explain your changes, why you made them, and any additional context if necessary.
+
+11. **Wait for Review**: The maintainers will review your pull request, provide feedback, and merge it once it's approved.
+
+### Additional Notes
+
+- **Respect the Code of Conduct**: Please ensure that you follow the project's code of conduct in all interactions.
+
+- **Ask for Help**: If you're stuck or unsure about something, don't hesitate to ask for help. The community is here to assist.
+
+- **Stay Updated**: Make sure to pull the latest changes from the `master` branch before creating a new pull request.
+
+Thank you for your contribution! Your efforts help make ConsoleWatcher better for everyone.
 
 ## License
 
