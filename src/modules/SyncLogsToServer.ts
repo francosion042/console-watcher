@@ -10,7 +10,7 @@ class SyncLogsToServer extends GlobalErrorHandler {
     apiKey: string,
     appKey: string
   ): Promise<boolean> {
-    const apiUrl: string = `https://console-watcher-backend.onrender.com/api/v1/applications/${appKey}/logs`
+    const apiUrl: string = `https://api.consolewatcher.dev/api/v1/applications/${appKey}/logs`
     const headers = {
       'api-key': apiKey,
       'Content-Type': 'text/plain',
