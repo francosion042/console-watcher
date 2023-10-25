@@ -64,7 +64,9 @@ By registering a global error handler, you have the flexibility to handle errors
 
 ## Syncing to ConsoleWatcher Server
 
-ConsoleWatcher offers the ability to sync your logs to a dedicated server. This can be especially useful for easier log visualization and management.
+ConsoleWatcher provides the flexibility to sync your logs to a dedicated server, either manually or at regular intervals. This feature enhances log visualization and management.
+
+To manually sync logs:
 
 ```typescript
 watcher.syncToConsoleWatcherServer({
@@ -73,6 +75,20 @@ watcher.syncToConsoleWatcherServer({
   encryptionKey: 'YOUR_ENCRYPTION_KEY'
 });
 ```
+
+For automated intervals, you can set up a routine using JavaScript's `setInterval`:
+
+```typescript
+setInterval(() => {
+  watcher.syncToConsoleWatcherServer({
+    apiKey: 'YOUR_API_KEY',
+    applicationKey: 'YOUR_APPLICATION_KEY',
+    encryptionKey: 'YOUR_ENCRYPTION_KEY'
+  });
+}, YOUR_DESIRED_INTERVAL_IN_MILLISECONDS);
+```
+
+Replace `YOUR_DESIRED_INTERVAL_IN_MILLISECONDS` with the frequency you want the sync operation to occur (e.g., `60000` for every minute). Adjust as needed to suit your application's requirements.
 
 Sync Configuration:
 
