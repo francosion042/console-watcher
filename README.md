@@ -105,18 +105,18 @@ First and foremost, thank you for your interest in contributing to ConsoleWatche
 
 ### Getting Started
 
-1. **Fork the Repository**: Start by forking the ConsoleWatcher repository to your own GitHub account.
+1. **Fork the Repository**: Start by forking the console-watcher repository to your own GitHub account.
 
 2. **Clone the Repository**: Once you have forked the repo, clone it to your local machine:
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/ConsoleWatcher.git
+   git clone https://github.com/YOUR_USERNAME/console-watcher.git
    ```
 
 3. **Install Dependencies**: After cloning, navigate to the project directory and install the necessary dependencies:
 
    ```bash
-   cd ConsoleWatcher
+   cd console-watcher
    npm install
    ```
 
