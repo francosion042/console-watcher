@@ -1,4 +1,4 @@
-import { ConfigType, SyncToServerConfigType } from './types'
+import { ConfigType, SyncToCloudConfigType } from './types'
 import {
   encrypt,
   getFileType,
@@ -6,7 +6,7 @@ import {
 } from './utils'
 import WriteLogToFile from './modules/WriteLogToFile'
 import ReadLogsFromFile from './modules/ReadLogsFromFile'
-import SyncLogsToServer from './modules/SyncLogsToServer'
+import SyncLogsToCloud from './modules/SyncLogsToCloud'
 import GlobalErrorHandler from './errors/GlobalErrorHandler'
 
 class ConsoleWatcher extends GlobalErrorHandler {
@@ -92,7 +92,7 @@ class ConsoleWatcher extends GlobalErrorHandler {
    * @param {string} config.applicationKey
    * @param {string} config.encryptionKey - A Key private to you, do not lose or change this key to avoid losing already encrypted data.
    */
-  public async syncToConsoleWatcherServer(config: SyncToServerConfigType) {
+  public async syncToConsoleWatcherCloud(config: SyncToCloudConfigType) {
     // Ensures saveToFile is set to true when calling this method
     this.saveToFile = true
 
@@ -118,7 +118,7 @@ class ConsoleWatcher extends GlobalErrorHandler {
           config.encryptionKey
         )
 
-        const response = await SyncLogsToServer.post(
+        const response = await SyncLogsToCloud.post(
           encryptedData,
           config.apiKey,
           config.applicationKey

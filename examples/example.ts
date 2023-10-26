@@ -14,13 +14,13 @@ consoleWatcher.registerGlobalErrorHandler((error) => {
 })
 
 
-// You can Periodically sync the logs to the remote server.
-const syncToServerConfig = {
+// You can Periodically sync the logs to the remote cloud.
+const syncToCloudConfig = {
   apiKey: 'API_KEY_85SXZ11697914013841',
   applicationKey: 'APP_KEY_BOUXCY1697914182124',
   encryptionKey: 'gggggggggggggggg',
 }
-consoleWatcher.syncToConsoleWatcherServer(syncToServerConfig)
+consoleWatcher.syncToConsoleWatcherCloud(syncToCloudConfig)
 
 console.log('This is a test log!', 'Another test log')
 console.info({ hello: 'world' })

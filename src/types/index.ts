@@ -4,7 +4,7 @@ export interface ConfigType {
   logFilePath?: string
 }
 
-export interface SyncToServerConfigType {
+export interface SyncToCloudConfigType {
   apiKey: string
   applicationKey: string
   encryptionKey: string

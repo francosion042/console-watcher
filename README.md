@@ -9,14 +9,14 @@
 </div>
 ---
 
-`console-watcher` is a utility library that provides extended logging capabilities for Node.js applications. It overrides the native console methods, allowing developers to customize how logs are handled. Logs can be saved to a file, or even synced to a dedicated server while retaining the ability to display or hide them in the console for security reasons.
+`console-watcher` is a utility library that provides extended logging capabilities for Node.js applications. It overrides the native console methods, allowing developers to customize how logs are handled. Logs can be saved to a file, or even synced to a dedicated cloud while retaining the ability to display or hide them in the console for security reasons.
 
 ## Features
 
 - Override native console logging methods (`console.log`, `console.info`, `console.error`).
 - Configurable behavior to print in console or save to a file.
 - Supports both JSON and non-JSON file types for logs saving.
-- Encrypt and sync logs to a dedicated server for better visualization and management.
+- Encrypt and sync logs to a dedicated cloud for better visualization and management.
 - Register your custom error handling function which will be called whenever an error occurs within the library.
 
 ## Installation
@@ -63,14 +63,14 @@ watcher.registerGlobalErrorHandler((error) => {
 
 By registering a global error handler, you have the flexibility to handle errors in a way that best suits your application, whether it’s logging, alerting the user, or other custom behaviors.
 
-## Syncing to ConsoleWatcher Server
+## Syncing to ConsoleWatcher Cloud
 
-ConsoleWatcher provides the flexibility to sync your logs to a dedicated server, either manually or at regular intervals. This feature enhances log visualization and management.
+ConsoleWatcher provides the flexibility to sync your logs to a dedicated cloud, either manually or at regular intervals. This feature enhances log visualization and management.
 
 To manually sync logs:
 
 ```typescript
-watcher.syncToConsoleWatcherServer({
+watcher.syncToConsoleWatcherCloud({
   apiKey: 'YOUR_API_KEY',
   applicationKey: 'YOUR_APPLICATION_KEY',
   encryptionKey: 'YOUR_ENCRYPTION_KEY'
@@ -81,7 +81,7 @@ For automated intervals, you can set up a routine using JavaScript's `setInterva
 
 ```typescript
 setInterval(() => {
-  watcher.syncToConsoleWatcherServer({
+  watcher.syncToConsoleWatcherCloud({
     apiKey: 'YOUR_API_KEY',
     applicationKey: 'YOUR_APPLICATION_KEY',
     encryptionKey: 'YOUR_ENCRYPTION_KEY'
@@ -97,7 +97,7 @@ Sync Configuration:
 - `applicationKey`: Your application’s unique key on the ConsoleWatcher platform.
 - `encryptionKey`: A private key unique to you. Ensure you keep this key safe and don’t lose it to prevent data loss. This key must be exactly 16 characters in length.
 
-Note: The encryption key is used to encrypt logs before they’re sent to the server. This ensures data privacy and security. It’s vital not to lose or change this key to avoid losing already encrypted data.
+Note: The encryption key is used to encrypt logs before they’re sent to the cloud. This ensures data privacy and security. It’s vital not to lose or change this key to avoid losing already encrypted data.
 
 ## Contributing
 

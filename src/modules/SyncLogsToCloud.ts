@@ -1,7 +1,7 @@
 import axios from 'axios'
 import GlobalErrorHandler from '../errors/GlobalErrorHandler'
 
-class SyncLogsToServer extends GlobalErrorHandler {
+class SyncLogsToCloud extends GlobalErrorHandler {
   constructor() {
     super()
   }
@@ -34,4 +34,4 @@ class SyncLogsToServer extends GlobalErrorHandler {
   }
 }
 
-export default new SyncLogsToServer()
+export default new SyncLogsToCloud()
