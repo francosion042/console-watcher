@@ -50,9 +50,6 @@ export const minutesToMilliseconds = (minutes: number): number => {
   return minutes * 60 * 1000
 }
 
-
 export const errorHandler = (error: any) => {
-  throw new Error(
-    error?.response?.status ?? error.message ?? 'Unknown'
-  )
+  throw new Error(error?.response?.status ?? error.message ?? 'Unknown')
 }
