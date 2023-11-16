@@ -1,7 +1,7 @@
 import { ConfigType, SyncToCloudConfigType } from './types'
 import { encrypt, getFileType, validateFileType } from './utils'
 import WriteLogToFile from './modules/WriteLogToFile'
-import ReadLogsFromFile from './modules/ReadLogsFromFile'
+import ReadLogsFromFile from './modules/temp'
 import SyncLogsToCloud from './modules/SyncLogsToCloud'
 import GlobalErrorHandler from './errors/GlobalErrorHandler'
 
