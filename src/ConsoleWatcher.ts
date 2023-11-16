@@ -1,9 +1,5 @@
 import { ConfigType, SyncToCloudConfigType } from './types'
-import {
-  encrypt,
-  getFileType,
-  validateFileType,
-} from './utils'
+import { encrypt, getFileType, validateFileType } from './utils'
 import WriteLogToFile from './modules/WriteLogToFile'
 import ReadLogsFromFile from './modules/ReadLogsFromFile'
 import SyncLogsToCloud from './modules/SyncLogsToCloud'
@@ -98,7 +94,9 @@ class ConsoleWatcher extends GlobalErrorHandler {
 
     // Validate the length of the encryptionKey
     if (config.encryptionKey.length !== 16) {
-      return this.handleError(new Error('Invalid encryptionKey length. Expected 16 characters.'))
+      return this.handleError(
+        new Error('Invalid encryptionKey length. Expected 16 characters.')
+      )
     }
 
     // //////////////////////////
@@ -139,7 +137,7 @@ class ConsoleWatcher extends GlobalErrorHandler {
    * @param handler A callback function that will be invoked with the error object when an error occurs.
    */
   public registerGlobalErrorHandler(handler: (error: any) => void): void {
-    GlobalErrorHandler.registerGlobalErrorHandler(handler);
+    GlobalErrorHandler.registerGlobalErrorHandler(handler)
   }
 }
 

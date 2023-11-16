@@ -13,7 +13,6 @@ consoleWatcher.registerGlobalErrorHandler((error) => {
   // console.warn(error)
 })
 
-
 // You can Periodically sync the logs to the remote cloud.
 const syncToCloudConfig = {
   apiKey: 'API_KEY_85SXZ11697914013841',

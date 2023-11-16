@@ -44,7 +44,7 @@ class WriteLogToFile extends GlobalErrorHandler {
     try {
       // Check if the file exists before trying to clear its content
       if (fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, '', 'utf8');
+        fs.writeFileSync(filePath, '', 'utf8')
       }
     } catch (error) {
       this.handleError(error)

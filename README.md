@@ -4,10 +4,9 @@
 <!-- markdownlint-disable MD033 -->
 <div align="center">
 
-[![Publish Package to npmjs](https://github.com/francosion042/console-watcher/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/francosion042/console-watcher/actions/workflows/npm-publish.yml)   [![npm version](https://img.shields.io/npm/v/console-watcher.svg?style=flat-square)](https://www.npmjs.org/package/console-watcher)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)    [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)    [![Downloads](https://img.shields.io/npm/dm/console-watcher.svg)](https://www.npmjs.com/package/console-watcher)
+[![Publish Package to npmjs](https://github.com/francosion042/console-watcher/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/francosion042/console-watcher/actions/workflows/npm-publish.yml) [![npm version](https://img.shields.io/npm/v/console-watcher.svg?style=flat-square)](https://www.npmjs.org/package/console-watcher) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![Downloads](https://img.shields.io/npm/dm/console-watcher.svg)](https://www.npmjs.com/package/console-watcher)
 
-</div>
----
+## </div>
 
 `console-watcher` is a utility library that provides extended logging capabilities for Node.js applications. It overrides the native console methods, allowing developers to customize how logs are handled. Logs can be saved to a file, or even synced to a dedicated cloud while retaining the ability to display or hide them in the console for security reasons.
 
@@ -57,8 +56,11 @@ Console Watcher supports a global error handler. You can register your custom er
 
 ```typescript
 watcher.registerGlobalErrorHandler((error) => {
-  console.error('An error occurred in Console Watcher:', error.message ?? error?.response?.statusText ?? 'Unknown');
-});
+  console.error(
+    'An error occurred in Console Watcher:',
+    error.message ?? error?.response?.statusText ?? 'Unknown'
+  )
+})
 ```
 
 By registering a global error handler, you have the flexibility to handle errors in a way that best suits your application, whether it’s logging, alerting the user, or other custom behaviors.
@@ -73,8 +75,8 @@ To manually sync logs:
 watcher.syncToConsoleWatcherCloud({
   apiKey: 'YOUR_API_KEY',
   applicationKey: 'YOUR_APPLICATION_KEY',
-  encryptionKey: 'YOUR_ENCRYPTION_KEY'
-});
+  encryptionKey: 'YOUR_ENCRYPTION_KEY',
+})
 ```
 
 For automated intervals, you can set up a routine using JavaScript's `setInterval`:
@@ -84,9 +86,9 @@ setInterval(() => {
   watcher.syncToConsoleWatcherCloud({
     apiKey: 'YOUR_API_KEY',
     applicationKey: 'YOUR_APPLICATION_KEY',
-    encryptionKey: 'YOUR_ENCRYPTION_KEY'
-  });
-}, YOUR_DESIRED_INTERVAL_IN_MILLISECONDS);
+    encryptionKey: 'YOUR_ENCRYPTION_KEY',
+  })
+}, YOUR_DESIRED_INTERVAL_IN_MILLISECONDS)
 ```
 
 Replace `YOUR_DESIRED_INTERVAL_IN_MILLISECONDS` with the frequency you want the sync operation to occur (e.g., `60000` for every minute). Adjust as needed to suit your application's requirements.
