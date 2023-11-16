@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import ConsoleWatcher from '../../src/index'
+import ConsoleWatcher from '../../src/ConsoleWatcher'
 
 describe('ConsoleWatcher', () => {
   // Check if logs are saved to a file
